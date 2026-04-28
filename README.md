@@ -28,3 +28,4 @@ Brindar una herramienta interactiva que permita a los usuarios:
 
 ---
 
+Avance realizado por Ximena: CRUD y queries de toma de decisiones.
