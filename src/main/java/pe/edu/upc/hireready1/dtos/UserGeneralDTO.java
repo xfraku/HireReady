@@ -1,75 +1,40 @@
-package pe.edu.upc.hireready1.entities;
+package pe.edu.upc.hireready1.dtos;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-@Entity
-@Table(name = "Users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserGeneralDTO {
     private Long userId;
-
-    @Column(name = "dni", length = 8, nullable = false)
     private String dni;
-
-    @Column(name = "personalEmail", length = 70, nullable = false)
     private String personalEmail;
-
-    //Algortimo de encriptación: BCrypt (Spring Security), máximo 60 caracteres
-    @Column(name = "passwordHash", length = 255, nullable = false)
     private String passwordHash;
-
-    @Column(name = "firstName", length = 30, nullable = false)
     private String firstName;
-
-    @Column(name = "secondName", length = 30, nullable = false)
     private String secondName;
-
-    @Column(name = "paternalSurname", length = 50, nullable = false)
     private String paternalSurname;
-
-    @Column(name = "maternalSurname", length = 50, nullable = false)
     private String maternalSurname;
-
-    @Column(name = "languagePref", length = 20, nullable = false)
     private String languagePref;
-
-    @Column(name = "onboardingDone", nullable = false)
     private Boolean onboardingDone;
 
-    @Column(name = "isVerified", nullable = false)
+    @JsonProperty("verified")
     private Boolean isVerified;
 
-    @Column(name = "isDeleted", nullable = false)
+    @JsonProperty("deleted")
     private Boolean isDeleted;
 
-    // FetchType.EAGER permite que, al buscar un usuario, se haga un Join y se traigan tambien todos los roles del
-    // usuario de forma automatica
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "userRoles", //Nombre de la tabla intermedia
-            joinColumns = @JoinColumn(name = "userId"), //FK hacia User
-            inverseJoinColumns = @JoinColumn(name = "rolId")) //FK hacia Rol
-    private List<Rol> roles;
+    private Long rolId;
+    private Long profileId;
 
-    /* //FK va aqui (con respecto a Tabla Rol)
-    @ManyToOne
-    @JoinColumn(name = "rolId", nullable = false)
-    private Rol rol; */
 
-    //mappedBy para que la relación sea bidireccional (es decir, que desde el objeto user se pueda acceder a profile)
-    //CascadeType.ALL para que cuando se elimine un usuario, se borre automaticamente también su perfil
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Profile profile;
+    // Constructor vacío
+    public UserGeneralDTO() {}
 
-    public User() {
-    }
+    // Constructor completo
 
-    public User(Long userId, String dni, String personalEmail, String passwordHash, String firstName, String secondName,
-                String paternalSurname, String maternalSurname, String languagePref, Boolean onboardingDone,
-                Boolean isVerified, Boolean isDeleted, List<Rol> roles, Profile profile) {
+
+    public UserGeneralDTO(Long userId, String dni, String personalEmail, String passwordHash, String firstName,
+                          String secondName, String paternalSurname, String maternalSurname, String languagePref,
+                          Boolean onboardingDone, Boolean isVerified, Boolean isDeleted, Long rolId, Long profileId) {
         this.userId = userId;
         this.dni = dni;
         this.personalEmail = personalEmail;
@@ -82,10 +47,11 @@ public abstract class User {
         this.onboardingDone = onboardingDone;
         this.isVerified = isVerified;
         this.isDeleted = isDeleted;
-        this.roles = roles;
-        this.profile = profile;
+        this.rolId = rolId;
+        this.profileId = profileId;
     }
 
+    // Getters y Setters
     public Long getUserId() {
         return userId;
     }
@@ -158,7 +124,7 @@ public abstract class User {
         this.languagePref = languagePref;
     }
 
-    public Boolean isOnboardingDone() {
+    public Boolean getOnboardingDone() {
         return onboardingDone;
     }
 
@@ -166,7 +132,7 @@ public abstract class User {
         this.onboardingDone = onboardingDone;
     }
 
-    public Boolean isVerified() {
+    public Boolean getVerified() {
         return isVerified;
     }
 
@@ -174,7 +140,7 @@ public abstract class User {
         isVerified = verified;
     }
 
-    public Boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
@@ -182,19 +148,19 @@ public abstract class User {
         isDeleted = deleted;
     }
 
-    public List<Rol> getRoles() {
-        return roles;
+    public Long getRolId() {
+        return rolId;
     }
 
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
+    public void setRolId(Long rolId) {
+        this.rolId = rolId;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Long getProfileId() {
+        return profileId;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 }
