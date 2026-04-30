@@ -34,17 +34,6 @@ public class UserController {
         return ResponseEntity.ok(lista);
     }
 
-    @PostMapping("/nuevo")
-    public ResponseEntity<?> registrar(@RequestBody UserGeneralDTO dto){
-        ModelMapper m = new ModelMapper();
-        User u = m.map(dto, User.class); //Convirtiendo User tipo DTO a tipo User (entidad)
-        User us = uS.insert(u); //Porque insert() recibe el objeto de tipo User, no el dto
-
-        //Volviendo a convertir a tipo DTO, para dar la respuesta en el frontend (api)
-        UserGeneralDTO responseDTO = m.map(us, UserGeneralDTO.class);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
-    }
-
     @GetMapping("/lista/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id){
         ModelMapper m = new ModelMapper();
@@ -58,29 +47,6 @@ public class UserController {
         }
     }
 
-    @PutMapping("/actualiza")
-    public ResponseEntity<String> actualizar(@RequestBody UserGeneralDTO dto){
-        Optional<User> existe = uS.listById(dto.getUserId()); //Pasando el getter para que busque si está el id ingresado
-
-        if (existe.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("User not found.");
-        }
-
-        User user = existe.get();
-        user.setDni(dto.getDni());
-        user.setPersonalEmail(dto.getPersonalEmail());
-        user.setPasswordHash(dto.getPasswordHash());
-        user.setFirstName(dto.getFirstName());
-        user.setSecondName(dto.getSecondName());
-        user.setPaternalSurname(dto.getPaternalSurname());
-        user.setMaternalSurname(dto.getMaternalSurname());
-        user.setLanguagePref(dto.getLanguagePref());
-
-        uS.update(user);
-
-        return ResponseEntity.ok("User successfully updated.");
-    }
 
     @DeleteMapping("/elimina/{id}")
     public ResponseEntity<String> eliminar(@PathVariable Long id){

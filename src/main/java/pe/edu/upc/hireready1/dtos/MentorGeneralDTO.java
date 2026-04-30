@@ -1,8 +1,8 @@
 package pe.edu.upc.hireready1.dtos;
 
-public class MentorGeneralDTO {
-    private Long mentorId;
-    private Long userId;
+public class MentorGeneralDTO extends UserGeneralDTO {
+    //private Long mentorId;
+    //private Long userId;
     private String bachelorDegreeCertificateUrl;
     private String professionalDegreeCertificateUrl;
     private String workplaceName;
@@ -13,12 +13,15 @@ public class MentorGeneralDTO {
     public MentorGeneralDTO() {}
 
     // Constructor completo
-    public MentorGeneralDTO(Long mentorId, Long userId, String bachelorDegreeCertificateUrl,
-                            String professionalDegreeCertificateUrl, String workplaceName, String workEmail,
-                            String RUC) {
+    public MentorGeneralDTO(Long userId, String dni, String personalEmail, String passwordHash, String firstName,
+                            String secondName, String paternalSurname, String maternalSurname, String languagePref,
+                            Boolean onboardingDone, Boolean isVerified, Boolean isDeleted, Long rolId, Long profileId,
+                            String bachelorDegreeCertificateUrl, String professionalDegreeCertificateUrl,
+                            String workplaceName, String workEmail, String RUC) {
 
-        this.mentorId = mentorId;
-        this.userId = userId;
+        super(userId, dni, personalEmail, passwordHash, firstName, secondName, paternalSurname, maternalSurname,
+                languagePref, onboardingDone, isVerified, isDeleted, rolId, profileId);
+
         this.bachelorDegreeCertificateUrl = bachelorDegreeCertificateUrl;
         this.professionalDegreeCertificateUrl = professionalDegreeCertificateUrl;
         this.workplaceName = workplaceName;
@@ -27,22 +30,6 @@ public class MentorGeneralDTO {
     }
 
     // Getters y Setters
-    public Long getMentorId() {
-        return mentorId;
-    }
-
-    public void setMentorId(Long mentorId) {
-        this.mentorId = mentorId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public String getBachelorDegreeCertificateUrl() {
         return bachelorDegreeCertificateUrl;
     }

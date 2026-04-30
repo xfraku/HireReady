@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
     @Id
@@ -38,13 +38,13 @@ public abstract class User {
     private String languagePref;
 
     @Column(name = "onboardingDone", nullable = false)
-    private boolean onboardingDone;
+    private Boolean onboardingDone;
 
     @Column(name = "isVerified", nullable = false)
-    private boolean isVerified;
+    private Boolean isVerified;
 
     @Column(name = "isDeleted", nullable = false)
-    private boolean isDeleted;
+    private Boolean isDeleted;
 
     // FetchType.EAGER permite que, al buscar un usuario, se haga un Join y se traigan tambien todos los roles del
     // usuario de forma automatica
@@ -68,8 +68,8 @@ public abstract class User {
     }
 
     public User(Long userId, String dni, String personalEmail, String passwordHash, String firstName, String secondName,
-                String paternalSurname, String maternalSurname, String languagePref, boolean onboardingDone,
-                boolean isVerified, boolean isDeleted, List<Rol> roles, Profile profile) {
+                String paternalSurname, String maternalSurname, String languagePref, Boolean onboardingDone,
+                Boolean isVerified, Boolean isDeleted, List<Rol> roles, Profile profile) {
         this.userId = userId;
         this.dni = dni;
         this.personalEmail = personalEmail;
@@ -158,27 +158,27 @@ public abstract class User {
         this.languagePref = languagePref;
     }
 
-    public boolean isOnboardingDone() {
+    public Boolean isOnboardingDone() {
         return onboardingDone;
     }
 
-    public void setOnboardingDone(boolean onboardingDone) {
+    public void setOnboardingDone(Boolean onboardingDone) {
         this.onboardingDone = onboardingDone;
     }
 
-    public boolean isVerified() {
+    public Boolean isVerified() {
         return isVerified;
     }
 
-    public void setVerified(boolean verified) {
+    public void setVerified(Boolean verified) {
         isVerified = verified;
     }
 
-    public boolean isDeleted() {
+    public Boolean isDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 

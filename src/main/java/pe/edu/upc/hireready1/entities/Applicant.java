@@ -23,6 +23,9 @@ public class Applicant extends User{
     @Column(name = "universityCertificateUrl", length = 1000, nullable = false)
     private String universityCertificateUrl;
 
+    public Applicant() {
+    }
+
     //Constructor padre + hijo
     public Applicant(Long userId, String dni, String personalEmail, String passwordHash, String firstName,
                      String secondName, String paternalSurname, String maternalSurname, String languagePref,

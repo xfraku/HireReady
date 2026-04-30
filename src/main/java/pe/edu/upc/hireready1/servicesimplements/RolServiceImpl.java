@@ -37,6 +37,6 @@ public class RolServiceImpl implements IRolService {
 
     @Override
     public List<Rol> listByRolType(String rolType) {
-        return rolRepository.findByTypeRol(rolType); //Llamando a la consulta del repository
+        return rolRepository.findByRolType(rolType); //Llamando a la consulta del repository
     }
 }

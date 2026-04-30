@@ -1,6 +1,7 @@
 package pe.edu.upc.hireready1.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,10 +38,19 @@ public class ApplicantController {
     @PostMapping("/nuevo")
     public ResponseEntity<?> registrar(@RequestBody ApplicantGeneralDTO dto){
         ModelMapper m = new ModelMapper();
-        Applicant a = m.map(dto, Applicant.class);
-        Applicant ap = aP.insert(a);
 
+        //Configurando el mapper para que ignore el ID del aplicante y no se confunda
+        m.typeMap(ApplicantGeneralDTO.class, Applicant.class).addMappings(mapper -> {
+            mapper.skip(Applicant::setApplicantId);
+        });
+
+        Applicant a = new Applicant();
+        m.map(dto, a); //Convirtiendo Applicant tipo DTO a tipo Applicant (entidad)
+        Applicant ap = aP.insert(a); //Porque insert() recibe el objeto de tipo User, no el dto
+
+        //Volviendo a convertir a tipo DTO, para dar la respuesta en el frontend (api)
         ApplicantGeneralDTO responseDTO = m.map(ap, ApplicantGeneralDTO.class);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
@@ -59,7 +69,7 @@ public class ApplicantController {
 
     @PutMapping("/actualiza")
     public ResponseEntity<String> actualizar(@RequestBody ApplicantGeneralDTO dto){
-        Optional<Applicant> existe = aP.listById(dto.getApplicantId()); //Pasando el getter para que busque si está el id ingresado
+        Optional<Applicant> existe = aP.listById(dto.getUserId()); //Pasando el getter para que busque si está el id ingresado
 
         if (existe.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

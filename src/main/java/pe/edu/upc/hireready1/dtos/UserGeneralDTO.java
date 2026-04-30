@@ -1,5 +1,7 @@
 package pe.edu.upc.hireready1.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class UserGeneralDTO {
@@ -12,13 +14,17 @@ public class UserGeneralDTO {
     private String paternalSurname;
     private String maternalSurname;
     private String languagePref;
-    private boolean onboardingDone;
-    private boolean isVerified;
-    private boolean isDeleted;
+    private Boolean onboardingDone;
 
-    // Se pasan los DTOS, no las clases en sí
-    private List<RolGeneralDTO> roles;
-    private ProfileGeneralDTO profile;
+    @JsonProperty("verified")
+    private Boolean isVerified;
+
+    @JsonProperty("deleted")
+    private Boolean isDeleted;
+
+    private Long rolId;
+    private Long profileId;
+
 
     // Constructor vacío
     public UserGeneralDTO() {}
@@ -28,8 +34,7 @@ public class UserGeneralDTO {
 
     public UserGeneralDTO(Long userId, String dni, String personalEmail, String passwordHash, String firstName,
                           String secondName, String paternalSurname, String maternalSurname, String languagePref,
-                          boolean onboardingDone, boolean isVerified, boolean isDeleted, List<RolGeneralDTO> roles,
-                          ProfileGeneralDTO profile) {
+                          Boolean onboardingDone, Boolean isVerified, Boolean isDeleted, Long rolId, Long profileId) {
         this.userId = userId;
         this.dni = dni;
         this.personalEmail = personalEmail;
@@ -42,8 +47,8 @@ public class UserGeneralDTO {
         this.onboardingDone = onboardingDone;
         this.isVerified = isVerified;
         this.isDeleted = isDeleted;
-        this.roles = roles;
-        this.profile = profile;
+        this.rolId = rolId;
+        this.profileId = profileId;
     }
 
     // Getters y Setters
@@ -119,43 +124,43 @@ public class UserGeneralDTO {
         this.languagePref = languagePref;
     }
 
-    public boolean isOnboardingDone() {
+    public Boolean getOnboardingDone() {
         return onboardingDone;
     }
 
-    public void setOnboardingDone(boolean onboardingDone) {
+    public void setOnboardingDone(Boolean onboardingDone) {
         this.onboardingDone = onboardingDone;
     }
 
-    public boolean isVerified() {
+    public Boolean getVerified() {
         return isVerified;
     }
 
-    public void setVerified(boolean verified) {
+    public void setVerified(Boolean verified) {
         isVerified = verified;
     }
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
-    public List<RolGeneralDTO> getRoles() {
-        return roles;
+    public Long getRolId() {
+        return rolId;
     }
 
-    public void setRoles(List<RolGeneralDTO> roles) {
-        this.roles = roles;
+    public void setRolId(Long rolId) {
+        this.rolId = rolId;
     }
 
-    public ProfileGeneralDTO getProfile() {
-        return profile;
+    public Long getProfileId() {
+        return profileId;
     }
 
-    public void setProfile(ProfileGeneralDTO profile) {
-        this.profile = profile;
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 }

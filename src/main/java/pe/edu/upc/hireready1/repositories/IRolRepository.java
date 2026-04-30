@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface IRolRepository extends JpaRepository<Rol, Long> {
-    public List<Rol> findByTypeRol(String rolType);
+    public List<Rol> findByRolType(String rolType);
     
 }

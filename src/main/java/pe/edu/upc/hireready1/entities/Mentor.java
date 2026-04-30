@@ -29,6 +29,11 @@ public class Mentor extends User {
     @Column(name = "RUC", length = 11, nullable = true)
     private String RUC;
 
+
+    public Mentor(){
+
+    }
+
     //Constructor padre + hijo
     public Mentor(Long userId, String dni, String personalEmail, String passwordHash, String firstName,
                   String secondName, String paternalSurname, String maternalSurname, String languagePref,
