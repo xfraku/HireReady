@@ -1,47 +1,24 @@
-package pe.edu.upc.hiready.entities;
+package pe.edu.upc.hiready.dtos;
 
-import jakarta.persistence.*;
+import java.util.List;
 
-@Entity
-@Table(name = "profile")
-public class Profile {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "profile_id")
+public class ProfileDTO {
     private Integer profileId;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Column(name = "linkedin_url", length = 255)
+    private Integer userId;
     private String linkedinUrl;
-
-    @Column(name = "facebook_url", length = 255)
     private String facebookUrl;
-
-    @Column(name = "career", nullable = false, length = 100)
     private String career;
-
-    @Column(name = "experience", columnDefinition = "TEXT")
     private String experience;
-
-    @Column(name = "experience_years")
     private Integer experienceYears;
-
-    @Column(name = "edu_institution", length = 100)
     private String eduInstitution;
-
-    @Column(name = "degree", length = 100)
     private String degree;
-
-    public Profile() {}
+    private List<UserSkillDTO> skills;
 
     public Integer getProfileId() { return profileId; }
     public void setProfileId(Integer profileId) { this.profileId = profileId; }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
 
     public String getLinkedinUrl() { return linkedinUrl; }
     public void setLinkedinUrl(String linkedinUrl) { this.linkedinUrl = linkedinUrl; }
@@ -63,4 +40,7 @@ public class Profile {
 
     public String getDegree() { return degree; }
     public void setDegree(String degree) { this.degree = degree; }
+
+    public List<UserSkillDTO> getSkills() { return skills; }
+    public void setSkills(List<UserSkillDTO> skills) { this.skills = skills; }
 }

@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import pe.edu.upc.hiready.entities.SimResult;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SimResultRepository extends JpaRepository<SimResult, Integer> {
+    Optional<SimResult> findBySimulationSimulationId(Integer simulationId);
+    List<SimResult> findBySimulationUserUserIdOrderByResultDateDesc(Integer userId);
 
     @Query("""
         SELECT u.userId, u.firstName, u.lastName, sr.overallScore

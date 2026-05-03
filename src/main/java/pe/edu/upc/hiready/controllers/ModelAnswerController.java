@@ -7,7 +7,7 @@ import pe.edu.upc.hiready.servicesInterfaces.IModelAnswerService;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/model-answers")
+@RequestMapping("/model-answers")
 public class ModelAnswerController {
     private final IModelAnswerService service;
 

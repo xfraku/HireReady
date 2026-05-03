@@ -11,7 +11,7 @@ public class Question {
     private Integer questionId;
 
     @ManyToOne
-    @JoinColumn(name = "model_answer_id", nullable = false)
+    @JoinColumn(name = "model_answer_id", nullable = true)
     private ModelAnswer modelAnswer;
 
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
