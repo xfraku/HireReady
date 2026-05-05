@@ -8,7 +8,7 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feedback_id")
-    //private Integer feedbackId;
+    private Integer feedbackId;
 
     @ManyToOne
     @JoinColumn(name = "result_id", nullable = false)
