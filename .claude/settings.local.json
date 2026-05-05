@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Imágenes\\\\Documentos\\\\HireReady\\\\HireReady\"; Get-ChildItem -Recurse -Force | Where-Object { $_.PSIsContainer } | Select-Object -ExpandProperty FullName | Sort-Object)",
-      "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Imágenes\\\\Documentos\\\\HireReady\\\\HireReady\"; Get-ChildItem -Force | Where-Object { !$_.PSIsContainer } | Select-Object -ExpandProperty FullName)"
+      "PowerShell(cd \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Imágenes\\\\Documentos\\\\HireReady\\\\HireReady\"; Get-ChildItem -Force | Where-Object { !$_.PSIsContainer } | Select-Object -ExpandProperty FullName)",
+      "Bash(Remove-Item -Path \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Imágenes\\\\Documentos\\\\HireReady\\\\HireReady\\\\src\\\\main\\\\java\\\\pe\\\\edu\\\\upc\\\\hiready\\\\config\\\\DotenvEnvironmentPostProcessor.java\" -Force)",
+      "Bash(Remove-Item -Path \"C:\\\\Users\\\\carlo\\\\OneDrive\\\\Imágenes\\\\Documentos\\\\HireReady\\\\HireReady\\\\src\\\\main\\\\resources\\\\META-INF\\\\spring\\\\org.springframework.boot.env.EnvironmentPostProcessor\" -Force)"
     ]
   }
 }
