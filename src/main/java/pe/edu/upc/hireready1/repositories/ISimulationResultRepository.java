@@ -5,20 +5,27 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.hireready1.entities.SimulationResult;
 
 @Repository
-public interface ISimulationResultRepository extends JpaRepository<SimulationResult, Long> {
+public interface SimResultRepository extends JpaRepository<SimResult, Integer> {
+    Optional<SimResult> findBySimulationSimulationId(Integer simulationId);
+    List<SimResult> findBySimulationUserUserIdOrderByResultDateDesc(Integer userId);
 
-    // US25: Retorna el puntaje promedio global de cada usuario que pertenece a una misma carrera,
-    // ordenado de mayor a menor para facilitar la comparación competitiva.
-    // Cruza: SimulationResult → Simulation → User + Profile (join ad-hoc por asociación inversa)
-    // Columnas del Object[]: [career, firstName, paternalSurname, avgOverallScore]
-    @Query("SELECT p.career, u.firstName, u.paternalSurname, AVG(sr.overallScore) " +
-            "FROM SimulationResult sr " +
-            "JOIN sr.simulation s " +
-            "JOIN s.user u " +
-            "JOIN Profile p ON p.user = u " +
-            "WHERE p.career = :career " +
-            "GROUP BY p.career, u.userId, u.firstName, u.paternalSurname " +
-            "ORDER BY AVG(sr.overallScore) DESC")
-    List<Object[]> findAvgScoresByCareer(@Param("career") String career);
+    @Query("""
+        SELECT u.userId, u.firstName, u.lastName, sr.overallScore
+        FROM User u
+        JOIN Simulation s ON u.userId = s.user.userId
+        JOIN SimResult sr ON s.simulationId = sr.simulation.simulationId
+        WHERE sr.overallScore >= 80
+        ORDER BY sr.overallScore DESC
+    """)
+    List<Object[]> getTopCandidates();
 
+    @Query("""
+    SELECT u.userId, u.firstName, u.lastName, sr.technicalScore
+    FROM SimResult sr
+    JOIN sr.simulation s
+    JOIN s.user u
+    WHERE sr.technicalScore < 60
+    ORDER BY sr.technicalScore ASC
+""")
+    List<Object[]> getLowTechnicalUsers();
 }
