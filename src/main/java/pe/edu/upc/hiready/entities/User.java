@@ -36,7 +36,7 @@ public class User {
 
     @Column(name = "is_verified")
     private Boolean isVerified;
-
+//Atributo para borrado lógico, permitiendo mantener la integridad referencial en la BD
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 

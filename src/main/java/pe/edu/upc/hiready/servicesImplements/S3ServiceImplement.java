@@ -39,7 +39,7 @@ public class S3ServiceImplement implements IS3Service {
                     .contentType(file.getContentType())
                     .contentLength(file.getSize())
                     .build();
-
+// Eliminación física del archivo en S3 para evitar almacenamiento huérfano al actualizar fotos
             s3Client.putObject(request, RequestBody.fromBytes(file.getBytes()));
         } catch (IOException e) {
             throw new RuntimeException("Error al subir archivo a S3", e);

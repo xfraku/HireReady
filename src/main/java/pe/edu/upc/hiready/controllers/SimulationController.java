@@ -24,7 +24,7 @@ public class SimulationController {
         this.simulationService = simulationService;
         this.userRepository = userRepository;
     }
-
+//Inicio de sesión de entrevista: genera la primera pregunta usando el servicio de IA
     @PostMapping("/start")
     public ResponseEntity<SimulationDTO> start(@Valid @RequestBody SimulationStartRequest request,
                                                @AuthenticationPrincipal UserDetails userDetails) {
