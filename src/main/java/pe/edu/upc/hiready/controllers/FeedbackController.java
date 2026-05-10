@@ -27,7 +27,7 @@ public class FeedbackController {
     public ResponseEntity<FeedbackDTO> getByResult(@PathVariable Integer resultId) {
         return ResponseEntity.ok(feedbackService.getFeedbackByResult(resultId));
     }
-
+// Endpoint para recuperar el historial de retroalimentación del usuario autenticado
     @GetMapping("/history")
     public ResponseEntity<List<FeedbackDTO>> getHistory(@AuthenticationPrincipal UserDetails userDetails) {
         User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
