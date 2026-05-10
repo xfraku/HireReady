@@ -1,5 +1,5 @@
 package pe.edu.upc.hiready.dtos;
-
+//DTO para desacoplar la entidad de la base de datos de la respuesta enviada al cliente
 public class UserDTO {
     private Integer userId;
     private Integer rolId;
