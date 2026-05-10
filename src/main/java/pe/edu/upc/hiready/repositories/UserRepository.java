@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmail(String email);
+    //Método para verificar existencia de email y evitar duplicados durante el registro
     boolean existsByEmail(String email);
 }
