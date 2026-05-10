@@ -20,7 +20,7 @@ public class S3Config {
 
     @Value("${aws.region}")
     private String region;
-
+// Configuración del cliente S3 para almacenamiento persistente de recursos multimedia
     @Bean
     public S3Client s3Client() {
         AwsBasicCredentials credentials = AwsBasicCredentials.create(accessKey, secretKey);
