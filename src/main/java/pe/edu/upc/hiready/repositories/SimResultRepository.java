@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface SimResultRepository extends JpaRepository<SimResult, Integer> {
     Optional<SimResult> findBySimulationSimulationId(Integer simulationId);
     List<SimResult> findBySimulationUserUserIdOrderByResultDateDesc(Integer userId);
-
+// Query personalizada para obtener el ranking de candidatos con mejor desempeño (Score >= 80)
     @Query("""
         SELECT u.userId, u.firstName, u.lastName, sr.overallScore
         FROM User u
