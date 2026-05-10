@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + email));
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario dedicado NO encontrado: " + email));
 
         if (Boolean.TRUE.equals(user.getDeleted())) {
             throw new UsernameNotFoundException("Cuenta eliminada: " + email);
