@@ -150,6 +150,7 @@ public class SimulationServiceImplement implements ISimulationService {
         BigDecimal verbalAvg = average(verbals);
         BigDecimal emotionalAvg = average(emotionals);
         BigDecimal technicalAvg = average(technicals);
+        // Cálculo de puntaje general promediando áreas verbal, emocional y técnica
         BigDecimal overall = verbalAvg.add(emotionalAvg).add(technicalAvg)
                 .divide(BigDecimal.valueOf(3), 2, java.math.RoundingMode.HALF_UP);
 
