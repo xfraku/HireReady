@@ -79,8 +79,8 @@ public class AuthServiceImplement implements IAuthService {
         if (request.getRolId() != null) {
             rol = rolRepository.findById(request.getRolId())
                     .orElseThrow(() -> new ResourceNotFoundException("Rol no encontrado"));
-        } else {
-            // Asigna rol por defecto (id=1 = Estudiante)
+        } else { 
+            // Lógica de asignación de rol: por defecto se asigna el rol de 'Estudiante' (ID: 1)
             rol = rolRepository.findById(1).orElse(null);
         }
 
