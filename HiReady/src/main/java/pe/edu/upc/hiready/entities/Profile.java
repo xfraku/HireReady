@@ -35,3 +35,4 @@ public class Profile {
     @Column(name = "degree", length = 100)
     private String degree;
 }
+// Creacion de entidades Profile realizada por Miguel
