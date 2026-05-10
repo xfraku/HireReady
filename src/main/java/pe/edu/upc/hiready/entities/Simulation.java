@@ -27,7 +27,7 @@ public class Simulation {
 
     @Column(name = "sim_language", length = 50)
     private String simLanguage;
-
+// Control de estado (IN_PROGRESS, COMPLETED) para gestionar el flujo de la entrevista
     @Column(name = "status", length = 50)
     private String status;
 
