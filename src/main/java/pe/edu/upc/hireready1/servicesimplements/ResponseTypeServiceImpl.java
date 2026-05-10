@@ -21,13 +21,13 @@ public class ResponseTypeServiceImpl implements IResponseTypeService {
     }
 
     @Override
-    public Optional<ResponseType> listById(Long id) {
-        return responseTypeRepository.findById((Long) id);
+    public ResponseType insert(ResponseType r) {
+        return responseTypeRepository.save(r);
     }
 
     @Override
-    public ResponseType insert(ResponseType r) {
-        return responseTypeRepository.save(r);
+    public Optional<ResponseType> listId(int id) {
+        return responseTypeRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ResponseTypeServiceImpl implements IResponseTypeService {
     }
 
     @Override
-    public void delete(Long id) {
-        responseTypeRepository.deleteById((Long) id);
+    public void delete(int id) {
+        responseTypeRepository.deleteById((long) id);
     }
 }

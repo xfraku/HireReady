@@ -21,13 +21,13 @@ public class FeedbackServiceImpl implements IFeedbackService {
     }
 
     @Override
-    public Optional<Feedback> listById(Long id) {
-        return feedbackRepository.findById((Long) id);
+    public Feedback insert(Feedback f) {
+        return feedbackRepository.save(f);
     }
 
     @Override
-    public Feedback insert(Feedback f) {
-        return feedbackRepository.save(f);
+    public Optional<Feedback> listId(int id) {
+        return feedbackRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
     }
 
     @Override
-    public void delete(Long id) {
-        feedbackRepository.deleteById((Long) id);
+    public void delete(int id) {
+        feedbackRepository.deleteById((long) id);
     }
 }

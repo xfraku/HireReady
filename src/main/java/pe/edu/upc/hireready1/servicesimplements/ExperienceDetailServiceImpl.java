@@ -26,17 +26,17 @@ public class ExperienceDetailServiceImpl implements IExperienceDetailService {
     }
 
     @Override
+    public Optional<ExperienceDetail> listId(int id) {
+        return experienceDetailRepository.findById((long) id);
+    }
+
+    @Override
     public void update(ExperienceDetail e) {
         experienceDetailRepository.save(e);
     }
 
     @Override
-    public void delete(Long id) {
-        experienceDetailRepository.deleteById((Long) id);
-    }
-
-    @Override
-    public Optional<ExperienceDetail> listById(Long id) {
-        return experienceDetailRepository.findById((Long) id);
+    public void delete(int id) {
+        experienceDetailRepository.deleteById((long) id);
     }
 }

@@ -21,13 +21,13 @@ public class QuestionServiceImpl implements IQuestionService {
     }
 
     @Override
-    public Optional<Question> listById(Long id) {
-        return questionRepository.findById((Long) id);
+    public Question insert(Question q) {
+        return questionRepository.save(q);
     }
 
     @Override
-    public Question insert(Question q) {
-        return questionRepository.save(q);
+    public Optional<Question> listId(int id) {
+        return questionRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class QuestionServiceImpl implements IQuestionService {
     }
 
     @Override
-    public void delete(Long id) {
-        questionRepository.deleteById((Long) id);
+    public void delete(int id) {
+        questionRepository.deleteById((long) id);
     }
 }

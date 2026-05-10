@@ -21,13 +21,13 @@ public class MentorServiceImpl implements IMentorService {
     }
 
     @Override
-    public Optional<Mentor> listById(Long id) {
-        return mentorRepository.findById((Long) id);
+    public Mentor insert(Mentor m) {
+        return mentorRepository.save(m);
     }
 
     @Override
-    public Mentor insert(Mentor m) {
-        return mentorRepository.save(m);
+    public Optional<Mentor> listId(int id) {
+        return mentorRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class MentorServiceImpl implements IMentorService {
     }
 
     @Override
-    public void delete(Long id) {
-        mentorRepository.deleteById((Long) id);
+    public void delete(int id) {
+        mentorRepository.deleteById((long) id);
     }
 }

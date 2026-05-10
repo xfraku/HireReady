@@ -26,17 +26,17 @@ public class ApplicantServiceImpl implements IApplicantService {
     }
 
     @Override
+    public Optional<Applicant> listId(int id) {
+        return applicantRepository.findById((long) id);
+    }
+
+    @Override
     public void update(Applicant a) {
         applicantRepository.save(a);
     }
 
     @Override
-    public void delete(Long id) {
-        applicantRepository.deleteById((Long) id);
-    }
-
-    @Override
-    public Optional<Applicant> listById(Long id) {
-        return applicantRepository.findById((Long) id);
+    public void delete(int id) {
+        applicantRepository.deleteById((long) id);
     }
 }

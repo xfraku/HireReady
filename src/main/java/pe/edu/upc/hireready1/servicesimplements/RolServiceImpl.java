@@ -26,17 +26,17 @@ public class RolServiceImpl implements IRolService {
     }
 
     @Override
+    public Optional<Rol> listId(int id) {
+        return rolRepository.findById((long) id);
+    }
+
+    @Override
     public void update(Rol r) {
         rolRepository.save(r);
     }
 
     @Override
-    public void delete(Long id) {
-        rolRepository.deleteById((Long) id);
-    }
-
-    @Override
-    public List<Rol> listByRolType(String rolType) {
-        return rolRepository.findByRolType(rolType); //Llamando a la consulta del repository
+    public void delete(int id) {
+        rolRepository.deleteById((long) id);
     }
 }

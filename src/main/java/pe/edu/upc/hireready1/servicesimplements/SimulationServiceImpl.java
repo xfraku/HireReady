@@ -26,17 +26,17 @@ public class SimulationServiceImpl implements ISimulationService {
     }
 
     @Override
+    public Optional<Simulation> listId(int id) {
+        return simulationRepository.findById((long) id);
+    }
+
+    @Override
     public void update(Simulation s) {
         simulationRepository.save(s);
     }
 
     @Override
-    public void delete(Long id) {
-        simulationRepository.deleteById((Long) id);
-    }
-
-    @Override
-    public Optional<Simulation> listById(Long id) {
-        return simulationRepository.findById((Long) id);
+    public void delete(int id) {
+        simulationRepository.deleteById((long) id);
     }
 }

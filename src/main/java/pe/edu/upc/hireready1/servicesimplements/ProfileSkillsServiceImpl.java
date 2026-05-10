@@ -21,13 +21,13 @@ public class ProfileSkillsServiceImpl implements IProfileSkillsService {
     }
 
     @Override
-    public Optional<ProfileSkills> listById(Long id) {
-        return profileSkillsRepository.findById((Long) id);
+    public ProfileSkills insert(ProfileSkills p) {
+        return profileSkillsRepository.save(p);
     }
 
     @Override
-    public ProfileSkills insert(ProfileSkills p) {
-        return profileSkillsRepository.save(p);
+    public Optional<ProfileSkills> listId(int id) {
+        return profileSkillsRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ProfileSkillsServiceImpl implements IProfileSkillsService {
     }
 
     @Override
-    public void delete(Long id) {
-        profileSkillsRepository.deleteById((Long) id);
+    public void delete(int id) {
+        profileSkillsRepository.deleteById((long) id);
     }
 }

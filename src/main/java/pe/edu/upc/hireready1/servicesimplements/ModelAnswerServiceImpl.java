@@ -21,13 +21,13 @@ public class ModelAnswerServiceImpl implements IModelAnswerService {
     }
 
     @Override
-    public Optional<ModelAnswer> listById(Long id) {
-        return modelAnswerRepository.findById((Long) id);
+    public ModelAnswer insert(ModelAnswer m) {
+        return modelAnswerRepository.save(m);
     }
 
     @Override
-    public ModelAnswer insert(ModelAnswer m) {
-        return modelAnswerRepository.save(m);
+    public Optional<ModelAnswer> listId(int id) {
+        return modelAnswerRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ModelAnswerServiceImpl implements IModelAnswerService {
     }
 
     @Override
-    public void delete(Long id) {
-        modelAnswerRepository.deleteById((Long) id);
+    public void delete(int id) {
+        modelAnswerRepository.deleteById((long) id);
     }
 }

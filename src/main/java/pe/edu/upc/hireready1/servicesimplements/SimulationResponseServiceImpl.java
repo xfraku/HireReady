@@ -21,13 +21,13 @@ public class SimulationResponseServiceImpl implements ISimulationResponseService
     }
 
     @Override
-    public Optional<SimulationResponse> listById(Long id) {
-        return simulationResponseRepository.findById((Long) id);
+    public SimulationResponse insert(SimulationResponse s) {
+        return simulationResponseRepository.save(s);
     }
 
     @Override
-    public SimulationResponse insert(SimulationResponse s) {
-        return simulationResponseRepository.save(s);
+    public Optional<SimulationResponse> listId(int id) {
+        return simulationResponseRepository.findById((long) id);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SimulationResponseServiceImpl implements ISimulationResponseService
     }
 
     @Override
-    public void delete(Long id) {
-        simulationResponseRepository.deleteById((Long) id);
+    public void delete(int id) {
+        simulationResponseRepository.deleteById((long) id);
     }
 }

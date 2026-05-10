@@ -26,16 +26,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public Optional<User> listId(int id) {
+        return userRepository.findById((long) id);
+    }
+
+    @Override
     public void update(User u) {
         userRepository.save(u);
     }
 
     @Override
-    public void delete(Long id) {
-        userRepository.deleteById((Long) id);
-    }
-    @Override
-    public Optional<User> listById(Long id) {
-        return userRepository.findById((Long) id);
+    public void delete(int id) {
+        userRepository.deleteById((long) id);
     }
 }
