@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class ModelMapperConfig {
     @Bean
     public ModelMapper modelMapper() {
+        //  Bean de ModelMapper para automatizar el mapeo entre entidades JPA y objetos DTO
         return new ModelMapper();
     }
 }
