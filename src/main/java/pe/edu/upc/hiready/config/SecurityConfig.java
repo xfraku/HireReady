@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                 .requestMatchers(HttpMethod.GET, "/roles").permitAll()
+                // Configuración de permisos: solo ADMIN puede gestionar usuarios y respuestas modelo
                 .requestMatchers("/users/**").hasRole("ADMIN")
                 .requestMatchers("/roles/**").hasRole("ADMIN")
                 .requestMatchers("/model-answers/**").hasRole("ADMIN")
