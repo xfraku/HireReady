@@ -38,7 +38,7 @@ public class GeminiServiceImplement implements IGeminiService {
                 "maxOutputTokens", 1024
             )
         );
-
+// Línea 26: Ajuste de temperatura de IA: 0.7 para un equilibrio entre creatividad y precisión
         try {
             @SuppressWarnings("unchecked")
             Map<String, Object> response = restClient.post()
