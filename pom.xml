@@ -98,7 +98,7 @@
             <version>2.26.31</version>
         </dependency>
 
-        <!-- .env file support -->
+        <!-- .env file support --
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>dotenv-java</artifactId>
