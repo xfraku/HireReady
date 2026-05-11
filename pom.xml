@@ -86,10 +86,7 @@
         </dependency>
 
         <!-- Validation -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
+        sfsdfsdfsdfsd
 
         <!-- AWS S3 SDK v2 -->
         <dependency>
