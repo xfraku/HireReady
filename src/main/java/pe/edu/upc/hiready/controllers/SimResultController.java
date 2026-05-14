@@ -8,7 +8,7 @@ import pe.edu.upc.hiready.servicesInterfaces.ISimResultService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sim-results")
+@RequestMapping({"/sim-results", "/resultados"})
 public class SimResultController {
 
     private final ISimResultService service;
@@ -25,5 +25,15 @@ public class SimResultController {
     @GetMapping("/low-technical")
     public List<Object[]> getLowTechnicalUsers() {
         return service.getLowTechnicalUsers();
+    }
+
+    @GetMapping("/evolucion/{userId}")
+    public ResponseEntity<List<Object[]>> getEvolucionMensual(@PathVariable int userId) {
+        return ResponseEntity.ok(service.avgScoreByMonth(userId));
+    }
+
+    @GetMapping("/feedback-analitico/{userId}")
+    public ResponseEntity<List<Object[]>> getFeedbackAnalitico(@PathVariable int userId) {
+        return ResponseEntity.ok(service.findFeedbackByUser(userId));
     }
 }
