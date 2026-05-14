@@ -2,6 +2,7 @@ package pe.edu.upc.hiready.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.hiready.entities.SimResult;
 
 import java.util.List;
@@ -30,4 +31,18 @@ public interface SimResultRepository extends JpaRepository<SimResult, Integer> {
     ORDER BY sr.technicalScore ASC
 """)
     List<Object[]> getLowTechnicalUsers();
+
+    @Query(value = "SELECT TO_CHAR(s.simulation_date, 'YYYY-MM') as mes, AVG(sr.overall_score) as promedio " +
+               "FROM simulation s JOIN sim_result sr ON s.simulation_id = sr.simulation_id " +
+               "WHERE s.user_id = :userId " +
+               "GROUP BY TO_CHAR(s.simulation_date, 'YYYY-MM') ORDER BY mes ASC", nativeQuery = true)
+List<Object[]> avgScoreByMonth(@Param("userId") int userId);
+
+@Query(value = "SELECT s.simulation_id, f.frequent_errors, f.recommendation " +
+               "FROM simulation s " +
+               "JOIN sim_result sr ON s.simulation_id = sr.simulation_id " +
+               "JOIN feedback f ON sr.result_id = f.result_id " +
+               "WHERE s.user_id = :userId", nativeQuery = true)
+List<Object[]> findFeedbackByUser(@Param("userId") int userId);
+    
 }
