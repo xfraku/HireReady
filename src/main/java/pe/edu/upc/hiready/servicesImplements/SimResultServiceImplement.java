@@ -24,4 +24,14 @@ public class SimResultServiceImplement implements ISimResultService {
     public List<Object[]> getLowTechnicalUsers() {
         return simResultRepository.getLowTechnicalUsers();
     }
+
+    @Override
+public List<Object[]> avgScoreByMonth(int userId) {
+    return simResultRepository.avgScoreByMonth(userId);
+}
+
+@Override
+public List<Object[]> findFeedbackByUser(int userId) {
+    return simResultRepository.findFeedbackByUser(userId);
+}
 }
